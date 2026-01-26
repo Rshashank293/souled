@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, ShoppingBag, Heart, User, Moon, Sun, Mic, Globe, Zap, Sparkles, Menu, X, ChevronRight, Star } from 'lucide-react';
 import { useApp } from '../store.tsx';
 import { Link, useNavigate } from 'react-router-dom';
@@ -27,6 +27,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   const navigate = useNavigate();
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <div className={`${state.theme === 'dark' ? 'dark bg-neutral-900 text-white' : 'bg-gray-50 text-gray-900'} min-h-screen transition-colors duration-500`}>

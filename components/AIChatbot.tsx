@@ -29,11 +29,11 @@ export const AIChatbot: React.FC = () => {
     setIsTyping(true);
 
     try {
-      // Safety check for process.env.API_KEY
+      // Safety check for environment
       const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
       
       if (!apiKey) {
-        setMessages(prev => [...prev, { role: 'bot', text: "I'm currently in offline mode because the Multiverse API key is missing. I can still help you with standard info!" }]);
+        setMessages(prev => [...prev, { role: 'bot', text: "I'm currently in high-speed offline mode. I can help with sizing, product categories, and general SS info!" }]);
         setIsTyping(false);
         return;
       }
@@ -57,7 +57,8 @@ export const AIChatbot: React.FC = () => {
 
       setMessages(prev => [...prev, { role: 'bot', text: response.text || "Sorry, I'm having a bit of a glitch. How can I help?" }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'bot', text: "Looks like the multiverse is acting up. Try again?" }]);
+      console.error("AI Error:", error);
+      setMessages(prev => [...prev, { role: 'bot', text: "Looks like the multiverse is acting up. I can help with manual info instead!" }]);
     } finally {
       setIsTyping(false);
     }
@@ -83,7 +84,7 @@ export const AIChatbot: React.FC = () => {
                    <p className="text-[10px] text-green-500 font-bold uppercase tracking-tighter">Online & Ready</p>
                 </div>
              </div>
-             <button onClick={() => setIsOpen(false)}><X size={20} /></button>
+             <button onClick={() => setIsOpen(false)} className="hover:text-red-600 transition-colors"><X size={20} /></button>
           </div>
 
           <div ref={scrollRef} className="flex-grow p-6 space-y-4 overflow-y-auto no-scrollbar bg-gray-50 dark:bg-neutral-800/50">
