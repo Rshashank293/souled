@@ -1,0 +1,8 @@
+{
+  "name": "SoulStore Pro",
+  "description": "Enterprise-grade e-commerce platform with Geo-location, Membership, and Admin CMS.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}

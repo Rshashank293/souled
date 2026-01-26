@@ -1,0 +1,128 @@
+
+import { Product } from './types';
+
+export const PRODUCTS: Product[] = [
+  {
+    id: 'p1',
+    name: 'Spider-Man: Across the Multiverse Oversized Tee',
+    description: 'High-quality graphic tee featuring Miles Morales. 100% premium cotton with high-definition digital print.',
+    price: 999,
+    memberPrice: 799,
+    originalPrice: 1299,
+    images: ['https://picsum.photos/seed/spidey1/800/1067', 'https://picsum.photos/seed/spidey2/800/1067'],
+    gender: 'MEN',
+    category: 'Oversized Tees',
+    theme: 'Marvel',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Black', 'White'],
+    inStock: true,
+    rating: 4.8,
+    reviewsCount: 1250,
+    isNew: true,
+    isBestSeller: true,
+    stockCount: 50,
+    // Added missing tags property
+    tags: ['marvel', 'spiderman', 'oversized', 'tee', 'miles morales']
+  },
+  {
+    id: 'p2',
+    name: 'Wonder Woman Logo Dress',
+    description: 'Elegant and powerful. Perfect for a day out or a super-fan gathering. Made from stretchable rayon.',
+    price: 1499,
+    memberPrice: 1199,
+    originalPrice: 1999,
+    images: ['https://picsum.photos/seed/ww1/800/1067'],
+    gender: 'WOMEN',
+    category: 'Dresses',
+    theme: 'DC',
+    sizes: ['XS', 'S', 'M', 'L'],
+    colors: ['Red', 'Blue'],
+    inStock: true,
+    rating: 4.5,
+    reviewsCount: 450,
+    stockCount: 20,
+    // Added missing tags property
+    tags: ['dc', 'wonder woman', 'dress', 'women']
+  },
+  {
+    id: 'p3',
+    name: 'Attack on Titan Survey Corps Hoodie',
+    description: 'Dedicate your heart. Heavyweight fleece for maximum warmth with embroidery on the back.',
+    price: 1999,
+    memberPrice: 1599,
+    originalPrice: 2499,
+    images: ['https://picsum.photos/seed/aot1/800/1067'],
+    gender: 'MEN',
+    category: 'Hoodies',
+    theme: 'Anime',
+    sizes: ['M', 'L', 'XL'],
+    colors: ['Green', 'Grey'],
+    inStock: true,
+    rating: 4.9,
+    reviewsCount: 3200,
+    isBestSeller: true,
+    stockCount: 15,
+    // Added missing tags property
+    tags: ['anime', 'attack on titan', 'hoodie', 'survey corps']
+  },
+  {
+    id: 'p4',
+    name: 'Disney Mickey Mouse Joggers',
+    description: 'Playful and comfy. Essential lounge wear with Mickey graphics.',
+    price: 1299,
+    memberPrice: 999,
+    originalPrice: 1599,
+    images: ['https://picsum.photos/seed/mickey1/800/1067'],
+    gender: 'WOMEN',
+    category: 'Joggers',
+    theme: 'Disney',
+    sizes: ['S', 'M', 'L'],
+    colors: ['Black'],
+    inStock: true,
+    rating: 4.3,
+    reviewsCount: 890,
+    stockCount: 40,
+    // Added missing tags property
+    tags: ['disney', 'mickey mouse', 'joggers', 'lounge']
+  },
+  {
+    id: 'p5',
+    name: 'Harry Potter Hogwarts Crest Cap',
+    description: 'Represent your house. One size fits all with adjustable strap.',
+    price: 699,
+    memberPrice: 499,
+    originalPrice: 899,
+    images: ['https://picsum.photos/seed/hp1/800/1067'],
+    gender: 'MEN',
+    category: 'Accessories',
+    theme: 'Harry Potter',
+    sizes: ['One Size'],
+    colors: ['Maroon'],
+    inStock: true,
+    rating: 4.7,
+    reviewsCount: 150,
+    stockCount: 100,
+    // Added missing tags property
+    tags: ['harry potter', 'hogwarts', 'cap', 'accessory']
+  },
+  {
+    id: 'p6',
+    name: 'Marvel Iron Man Reactor Tee',
+    description: 'Proof that Tony Stark has a heart. Glow-in-the-dark print.',
+    price: 899,
+    memberPrice: 699,
+    originalPrice: 1199,
+    images: ['https://picsum.photos/seed/ironman1/800/1067'],
+    gender: 'MEN',
+    category: 'T-Shirts',
+    theme: 'Marvel',
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['Red'],
+    inStock: true,
+    rating: 4.6,
+    reviewsCount: 940,
+    stockCount: 30,
+    // Added missing tags property
+    tags: ['marvel', 'iron man', 'tee', 'glow in the dark']
+  }
+];
