@@ -15,6 +15,7 @@ import { Community } from './pages/Community.tsx';
 import { AIChatbot } from './components/AIChatbot.tsx';
 import { Membership } from './pages/Membership.tsx';
 import { Wishlist } from './pages/Wishlist.tsx';
+import { GamifiedOffers } from './components/GamifiedOffers.tsx';
 
 const App: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             <Route path="/notifications" element={<div className="p-32 text-center text-4xl font-black uppercase dark:text-white">Smart Notifications</div>} />
           </Routes>
           <AIChatbot />
+          <GamifiedOffers />
         </Layout>
       </Router>
     </AppProvider>

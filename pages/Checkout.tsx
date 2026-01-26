@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useApp } from '../store';
+import { useApp } from '../store.tsx';
 import { useNavigate } from 'react-router-dom';
 import { ShieldCheck, Truck, CreditCard, Home, Briefcase, MapPin, CheckCircle2, Lock, Wallet, Smartphone } from 'lucide-react';
 

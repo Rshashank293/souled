@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Sparkles, X, Gift, RotateCw } from 'lucide-react';
-import { useApp } from '../store';
+import { useApp } from '../store.tsx';
 
 export const GamifiedOffers: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +21,6 @@ export const GamifiedOffers: React.FC = () => {
 
   const handleApply = () => {
     if (result) {
-      // Fix: Changed invalid 'APPLY_COUPON' action to 'ADD_NOTIFICATION' as it's the supported way to provide feedback
-      // and 'APPLY_COUPON' is not defined in the store's Action type.
       dispatch({ 
         type: 'ADD_NOTIFICATION', 
         payload: { text: `Coupon ${result} applied successfully! Check your rewards at checkout.`, type: 'success' } 
