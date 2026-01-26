@@ -2,8 +2,24 @@
 import React from 'react';
 import { useApp } from '../store';
 import { ProductCard } from '../components/ProductCard';
-import { ChevronRight, Sparkles, TrendingUp, Users } from 'lucide-react';
+import { ChevronRight, Sparkles, TrendingUp, Users, Zap, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const CATEGORIES = [
+  { name: 'Oversized Tees', img: 'https://picsum.photos/seed/cat1/400/500' },
+  { name: 'Classic Tees', img: 'https://picsum.photos/seed/cat2/400/500' },
+  { name: 'Shirts', img: 'https://picsum.photos/seed/cat3/400/500' },
+  { name: 'Joggers', img: 'https://picsum.photos/seed/cat4/400/500' },
+  { name: 'Hoodies', img: 'https://picsum.photos/seed/cat5/400/500' },
+  { name: 'Dresses', img: 'https://picsum.photos/seed/cat6/400/500' },
+];
+
+const THEMES = [
+  { name: 'Marvel', logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Marvel_Logo.svg' },
+  { name: 'DC', logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/DC_Comics_logo.svg' },
+  { name: 'Anime', logo: 'https://picsum.photos/seed/anime_logo/100/100' },
+  { name: 'Disney', logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney_2011.svg' },
+];
 
 export const Home: React.FC = () => {
   const { state } = useApp();
@@ -11,68 +27,97 @@ export const Home: React.FC = () => {
   return (
     <div className="pb-32 lg:pb-0 animate-in fade-in duration-500">
       {/* Story Bar */}
-      <div className="container mx-auto px-6 py-8 overflow-x-auto no-scrollbar flex gap-6">
+      <div className="container mx-auto px-6 py-8 overflow-x-auto no-scrollbar flex gap-8">
          {state.stories.map(story => (
-           <div key={story.id} className="flex flex-col items-center gap-2 flex-shrink-0 group cursor-pointer">
+           <div key={story.id} className="flex flex-col items-center gap-3 flex-shrink-0 group cursor-pointer">
               <div className="w-20 h-20 rounded-full p-1 border-2 border-red-600 transition-transform group-active:scale-90">
-                 <img src={story.imageUrl} className="w-full h-full object-cover rounded-full bg-gray-200" />
+                 <img src={story.imageUrl} className="w-full h-full object-cover rounded-full bg-gray-200 grayscale group-hover:grayscale-0 transition-all" />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">{story.title}</span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-gray-400 group-hover:text-red-600">{story.title}</span>
            </div>
          ))}
       </div>
 
-      {/* Main Hero Slider (Visual only for demo) */}
-      <section className="relative h-[600px] lg:h-[800px] overflow-hidden">
-         <img src="https://picsum.photos/seed/enterprise_hero/1920/1080" className="w-full h-full object-cover" />
-         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-         <div className="absolute bottom-20 left-6 lg:left-24 text-white max-w-3xl">
-            <span className="bg-red-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-6 inline-block">SS ORIGINALS</span>
-            <h1 className="text-6xl lg:text-9xl font-black italic tracking-tighter mb-8 leading-none">THE PURE <br/> <span className="text-red-600 underline decoration-8">SQUAD.</span></h1>
-            <p className="text-xl font-bold opacity-80 mb-12">New limited drops every Friday. Handcrafted in India. Global Standards.</p>
-            <div className="flex gap-4">
-               <Link to="/products" className="bg-white text-black px-12 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-red-600 hover:text-white transition-all">Explore Drop</Link>
-               <button className="bg-white/10 backdrop-blur-md text-white px-12 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] border border-white/20 hover:bg-white/20 transition-all">Watch Film</button>
+      {/* Main Hero Slider */}
+      <section className="relative h-[85vh] overflow-hidden bg-black group">
+         <img src="https://picsum.photos/seed/hero_soul/1920/1080" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-10000" />
+         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+            <div className="bg-red-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.3em] mb-8 animate-in slide-in-from-top duration-700">
+               Official Marvel Collection
+            </div>
+            <h1 className="text-6xl lg:text-[10rem] font-black italic tracking-tighter text-white mb-8 leading-none animate-in slide-in-from-bottom duration-700">
+               CRASH THE <br/> <span className="text-red-600 underline decoration-8">SQUAD.</span>
+            </h1>
+            <p className="text-xl lg:text-3xl text-white/80 font-bold mb-12 max-w-3xl">Premium quality fabrics meets high-octane graphic designs.</p>
+            <div className="flex flex-col sm:flex-row gap-6">
+               <Link to="/products" className="bg-white text-black px-16 py-6 rounded-2xl font-black text-xs uppercase tracking-[0.3em] shadow-2xl hover:bg-red-600 hover:text-white transition-all">SHOP NOW</Link>
+               <Link to="/membership" className="bg-transparent border-2 border-white text-white px-16 py-6 rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">JOIN SQUAD</Link>
             </div>
          </div>
       </section>
 
-      {/* AI Trending Section */}
-      <section className="container mx-auto px-6 lg:px-12 py-24">
+      {/* Category Grid */}
+      <section className="container mx-auto px-6 lg:px-12 py-32">
+         <div className="flex items-end justify-between mb-16">
+            <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter italic">Top <span className="text-red-600">Categories</span></h2>
+            <Link to="/products" className="text-xs font-black uppercase tracking-widest text-red-600 flex items-center gap-2 hover:gap-4 transition-all">View All <ChevronRight size={16} /></Link>
+         </div>
+         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {CATEGORIES.map(cat => (
+              <Link key={cat.name} to={`/products?category=${cat.name}`} className="group">
+                 <div className="aspect-[4/5] rounded-[2rem] overflow-hidden mb-4 shadow-xl border border-gray-100">
+                    <img src={cat.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                 </div>
+                 <p className="text-center text-[10px] font-black uppercase tracking-widest group-hover:text-red-600 transition-colors">{cat.name}</p>
+              </Link>
+            ))}
+         </div>
+      </section>
+
+      {/* Licensing Zone */}
+      <section className="bg-gray-50 dark:bg-neutral-800 py-24 rounded-[5rem] mx-4 mb-32">
+         <div className="container mx-auto px-6 lg:px-12">
+            <h2 className="text-center text-4xl font-black uppercase tracking-tighter italic mb-16">The Official <span className="text-red-600">Verse</span></h2>
+            <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-24 opacity-60">
+               {THEMES.map(theme => (
+                 <img key={theme.name} src={theme.logo} className="h-12 lg:h-16 grayscale hover:grayscale-0 hover:scale-110 transition-all cursor-pointer" alt={theme.name} />
+               ))}
+            </div>
+         </div>
+      </section>
+
+      {/* Trending Now */}
+      <section className="container mx-auto px-6 lg:px-12 pb-32">
          <div className="flex items-end justify-between mb-16">
             <div>
                <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter italic flex items-center gap-4">
-                 Trending in <span className="text-red-600">{state.location.city}</span>
+                 Trending <span className="text-red-600">Now</span>
                  <TrendingUp className="text-red-600" size={40} />
                </h2>
-               <p className="text-gray-500 font-bold text-sm uppercase tracking-widest mt-2">Based on real-time sales data from your area</p>
+               <p className="text-gray-500 font-bold text-sm uppercase tracking-widest mt-2">Bestsellers based on the last 24 hours</p>
             </div>
-            <button className="hidden md:flex items-center gap-2 text-xs font-black uppercase tracking-widest text-red-600 hover:gap-4 transition-all">View Analytics <ChevronRight size={16} /></button>
+            <Link to="/products" className="text-xs font-black uppercase tracking-widest text-red-600 flex items-center gap-2">Explore All <ChevronRight size={16} /></Link>
          </div>
          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {state.products.slice(0, 4).map(p => <ProductCard key={p.id} product={p} />)}
          </div>
       </section>
 
-      {/* Community Feed */}
-      <section className="bg-black text-white py-24 rounded-[4rem] mx-4 my-24 overflow-hidden relative">
-         <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
-           <img src="https://picsum.photos/seed/texture/1920/1080" className="w-full h-full object-cover" />
-         </div>
-         <div className="container mx-auto px-12 relative z-10">
-            <div className="flex flex-col items-center text-center mb-20">
-               <Users className="text-red-600 mb-6" size={56} />
-               <h2 className="text-5xl lg:text-7xl font-black italic tracking-tighter uppercase mb-6">Join The <span className="text-red-600">Circle.</span></h2>
-               <p className="text-gray-400 font-medium text-lg max-w-xl">Upload your look, tag your gear, and earn 500 Squad Points if featured.</p>
-               <button className="mt-10 bg-white text-black px-12 py-4 rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl">Upload Look</button>
+      {/* Membership Banner */}
+      <section className="container mx-auto px-6 lg:px-12 pb-32">
+         <div className="bg-black text-white rounded-[4rem] p-12 lg:p-24 flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden">
+            <Star className="absolute top-10 right-10 text-red-600 opacity-20" size={180} />
+            <div className="flex-1 relative z-10">
+               <span className="flex items-center gap-2 text-red-600 font-black text-xs uppercase tracking-[0.4em] mb-6"><Zap size={16} /> Super Squad Exclusive</span>
+               <h2 className="text-5xl lg:text-8xl font-black italic uppercase tracking-tighter mb-8 leading-none">Save Flat <span className="text-red-600">20%</span> on Everything.</h2>
+               <p className="text-xl font-bold text-gray-400 mb-12">Join 2 Million+ members and unlock free shipping & early drop access.</p>
+               <Link to="/membership" className="bg-white text-black px-12 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all">JOIN THE SQUAD</Link>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-               {[1,2,3,4,5].map(i => (
-                 <div key={i} className="aspect-[4/5] bg-neutral-900 rounded-3xl overflow-hidden group cursor-pointer">
-                    <img src={`https://picsum.photos/seed/community${i}/400/500`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-100" />
-                    <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                       <p className="text-[10px] font-black uppercase tracking-widest">@user_handle_{i}</p>
-                    </div>
+            <div className="flex-1 hidden lg:grid grid-cols-2 gap-6 relative z-10">
+               {[1,2,3,4].map(i => (
+                 <div key={i} className="aspect-[3/4] rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 p-4">
+                    <img src={`https://picsum.photos/seed/squad_${i}/400/500`} className="w-full h-full object-cover rounded-2xl opacity-80" />
                  </div>
                ))}
             </div>

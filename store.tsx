@@ -14,7 +14,8 @@ type Action =
   | { type: 'SET_USER'; payload: User | null }
   | { type: 'CLOSE_SPLASH' }
   | { type: 'TOGGLE_WISHLIST'; payload: string }
-  | { type: 'ADD_NOTIFICATION'; payload: { text: string; type: string } };
+  | { type: 'ADD_NOTIFICATION'; payload: { text: string; type: string } }
+  | { type: 'ADD_RECENTLY_VIEWED'; payload: string };
 
 const initialState: State = {
   theme: (localStorage.getItem('theme') as AppTheme) || 'light',
@@ -61,25 +62,19 @@ function reducer(state: State, action: Action): State {
     case 'SET_CURRENCY':
       return { ...state, currency: action.payload };
     case 'ADD_TO_CART':
+      const existing = state.cart.find(i => i.id === action.payload.id && i.selectedSize === action.payload.selectedSize && i.selectedColor === action.payload.selectedColor);
+      if (existing) {
+        return { ...state, cart: state.cart.map(i => i === existing ? { ...i, quantity: i.quantity + 1 } : i) };
+      }
       return { ...state, cart: [...state.cart, action.payload] };
     case 'REMOVE_FROM_CART':
       return { ...state, cart: state.cart.filter(i => !(i.id === action.payload.id && i.selectedSize === action.payload.size && i.selectedColor === action.payload.color)) };
     case 'UPDATE_CART_QUANTITY':
       return { ...state, cart: state.cart.map(item => (item.id === action.payload.id && item.selectedSize === action.payload.size && item.selectedColor === action.payload.color) ? { ...item, quantity: action.payload.quantity } : item) };
     case 'PLACE_ORDER':
-      const newWalletBalance = action.payload.paymentMethod.includes('Wallet') 
-        ? state.user!.walletBalance - (action.payload.total > state.user!.walletBalance ? state.user!.walletBalance : action.payload.total)
-        : state.user!.walletBalance;
-      return { 
-        ...state, 
-        orders: [action.payload, ...state.orders], 
-        cart: [],
-        user: state.user ? { ...state.user, walletBalance: newWalletBalance } : null 
-      };
+      return { ...state, orders: [action.payload, ...state.orders], cart: [] };
     case 'CLEAR_CART':
       return { ...state, cart: [] };
-    case 'CLOSE_SPLASH':
-      return { ...state, splashActive: false };
     case 'TOGGLE_WISHLIST':
       return { ...state, wishlist: state.wishlist.includes(action.payload) ? state.wishlist.filter(id => id !== action.payload) : [...state.wishlist, action.payload] };
     case 'ADD_NOTIFICATION':
@@ -91,13 +86,11 @@ function reducer(state: State, action: Action): State {
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
     localStorage.setItem('wishlist', JSON.stringify(state.wishlist));
     localStorage.setItem('orders', JSON.stringify(state.orders));
   }, [state.cart, state.wishlist, state.orders]);
-
   return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 };
 

@@ -13,6 +13,8 @@ import { Tracking } from './pages/Tracking';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { Community } from './pages/Community';
 import { AIChatbot } from './components/AIChatbot';
+import { Membership } from './pages/Membership';
+import { Wishlist } from './pages/Wishlist';
 
 const App: React.FC = () => {
   return (
@@ -29,8 +31,8 @@ const App: React.FC = () => {
             <Route path="/track/:id" element={<Tracking />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/community" element={<Community />} />
-            <Route path="/membership" element={<div className="p-32 text-center text-4xl font-black uppercase dark:text-white">Squad Membership Landing Page</div>} />
-            <Route path="/wishlist" element={<div className="p-32 text-center text-4xl font-black uppercase dark:text-white">Wishlist Collection</div>} />
+            <Route path="/membership" element={<Membership />} />
+            <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/notifications" element={<div className="p-32 text-center text-4xl font-black uppercase dark:text-white">Smart Notifications</div>} />
           </Routes>
           <AIChatbot />
