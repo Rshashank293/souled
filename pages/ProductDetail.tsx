@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useApp } from '../store';
+import { useApp } from '../store.tsx';
 import { ShoppingBag, Heart, Check, Share2, Ruler, ShieldCheck, MapPin } from 'lucide-react';
 
 export const ProductDetail: React.FC = () => {
@@ -28,7 +28,7 @@ export const ProductDetail: React.FC = () => {
     }
     dispatch({
       type: 'ADD_TO_CART',
-      payload: { ...product, selectedSize, selectedColor, quantity: 1 }
+      payload: { ...product, selectedSize, selectedColor, quantity: 1 } as any
     });
     navigate('/cart');
   };
@@ -41,7 +41,6 @@ export const ProductDetail: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8 lg:py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-        {/* Images Gallery */}
         <div className="space-y-4">
           <div className="aspect-[3/4] overflow-hidden rounded-3xl shadow-xl bg-white border border-gray-100 sticky top-32">
             <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
@@ -55,7 +54,6 @@ export const ProductDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* Product Details */}
         <div className="flex flex-col">
           <div className="mb-6">
             <span className="text-gray-500 text-sm font-bold uppercase tracking-widest">{product.category} • {product.theme}</span>
@@ -87,7 +85,6 @@ export const ProductDetail: React.FC = () => {
             <button className="text-red-700 font-bold text-sm border-b-2 border-red-700">JOIN NOW</button>
           </div>
 
-          {/* Size Selector */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-4">
               <span className="text-sm font-bold uppercase tracking-wider">Select Size</span>
@@ -110,7 +107,6 @@ export const ProductDetail: React.FC = () => {
             </div>
           </div>
 
-          {/* Delivery Checker */}
           <div className="mb-10 p-6 bg-gray-50 rounded-2xl border border-gray-100">
             <div className="flex items-center gap-2 text-sm font-bold text-gray-800 mb-4">
               <MapPin size={18} /> Check for Delivery
@@ -133,7 +129,6 @@ export const ProductDetail: React.FC = () => {
             )}
           </div>
 
-          {/* Action Buttons */}
           <div className="flex gap-4 mb-10 sticky bottom-4 lg:relative">
             <button 
               onClick={handleAddToCart}
@@ -146,7 +141,6 @@ export const ProductDetail: React.FC = () => {
             </button>
           </div>
 
-          {/* Details Tabs */}
           <div className="border-t border-gray-100 pt-8 space-y-6">
             <div>
               <h3 className="font-bold text-sm uppercase tracking-wider mb-2">Product Description</h3>

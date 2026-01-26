@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { MessageSquare, X, Send, Sparkles, ShoppingBag, Truck } from 'lucide-react';
-import { useApp } from '../store';
+import { useApp } from '../store.tsx';
 import { useNavigate } from 'react-router-dom';
 
 export const AIChatbot: React.FC = () => {
@@ -29,7 +29,16 @@ export const AIChatbot: React.FC = () => {
     setIsTyping(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      // Safety check for process.env.API_KEY
+      const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
+      
+      if (!apiKey) {
+        setMessages(prev => [...prev, { role: 'bot', text: "I'm currently in offline mode because the Multiverse API key is missing. I can still help you with standard info!" }]);
+        setIsTyping(false);
+        return;
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: userMsg,

@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useApp } from '../store';
+import { useApp } from '../store.tsx';
 import { Wallet, Package, Heart, Star, Settings, ChevronRight, LogOut, Clock, RotateCcw, ShieldCheck, Truck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 

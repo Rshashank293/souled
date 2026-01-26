@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { useApp } from '../store';
-import { ProductCard } from '../components/ProductCard';
+import { useApp } from '../store.tsx';
+import { ProductCard } from '../components/ProductCard.tsx';
 import { ChevronRight, Sparkles, TrendingUp, Users, Zap, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +26,6 @@ export const Home: React.FC = () => {
   
   return (
     <div className="pb-32 lg:pb-0 animate-in fade-in duration-500">
-      {/* Story Bar */}
       <div className="container mx-auto px-6 py-8 overflow-x-auto no-scrollbar flex gap-8">
          {state.stories.map(story => (
            <div key={story.id} className="flex flex-col items-center gap-3 flex-shrink-0 group cursor-pointer">
@@ -38,7 +37,6 @@ export const Home: React.FC = () => {
          ))}
       </div>
 
-      {/* Main Hero Slider */}
       <section className="relative h-[85vh] overflow-hidden bg-black group">
          <img src="https://picsum.photos/seed/hero_soul/1920/1080" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-10000" />
          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
@@ -57,7 +55,6 @@ export const Home: React.FC = () => {
          </div>
       </section>
 
-      {/* Category Grid */}
       <section className="container mx-auto px-6 lg:px-12 py-32">
          <div className="flex items-end justify-between mb-16">
             <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter italic">Top <span className="text-red-600">Categories</span></h2>
@@ -75,7 +72,6 @@ export const Home: React.FC = () => {
          </div>
       </section>
 
-      {/* Licensing Zone */}
       <section className="bg-gray-50 dark:bg-neutral-800 py-24 rounded-[5rem] mx-4 mb-32">
          <div className="container mx-auto px-6 lg:px-12">
             <h2 className="text-center text-4xl font-black uppercase tracking-tighter italic mb-16">The Official <span className="text-red-600">Verse</span></h2>
@@ -87,7 +83,6 @@ export const Home: React.FC = () => {
          </div>
       </section>
 
-      {/* Trending Now */}
       <section className="container mx-auto px-6 lg:px-12 pb-32">
          <div className="flex items-end justify-between mb-16">
             <div>
@@ -104,7 +99,6 @@ export const Home: React.FC = () => {
          </div>
       </section>
 
-      {/* Membership Banner */}
       <section className="container mx-auto px-6 lg:px-12 pb-32">
          <div className="bg-black text-white rounded-[4rem] p-12 lg:p-24 flex flex-col lg:flex-row items-center gap-16 relative overflow-hidden">
             <Star className="absolute top-10 right-10 text-red-600 opacity-20" size={180} />

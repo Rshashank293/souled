@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useApp } from '../store';
+import { useApp } from '../store.tsx';
 import { Trash2, Plus, Minus, ArrowLeft, ShieldCheck, Truck, ShoppingBag } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -37,7 +37,6 @@ export const Cart: React.FC = () => {
         <h1 className="text-3xl font-black uppercase tracking-tight mb-8">Shopping <span className="text-red-600">Cart</span> ({state.cart.length})</h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Cart Items */}
           <div className="lg:col-span-2 space-y-6">
             {state.cart.map((item) => (
               <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}`} className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col sm:flex-row gap-6">
@@ -88,11 +87,9 @@ export const Cart: React.FC = () => {
             </Link>
           </div>
 
-          {/* Order Summary */}
           <div className="space-y-6">
             <div className="bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100 sticky top-32">
               <h2 className="text-xl font-black uppercase mb-6 border-b border-gray-100 pb-4">Bill Details</h2>
-              
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between text-gray-500 font-medium">
                   <span>Cart Total</span>
@@ -113,12 +110,10 @@ export const Cart: React.FC = () => {
                   <span>-₹{discount}</span>
                 </div>
               </div>
-
               <div className="flex justify-between items-center mb-8 pt-4 border-t border-gray-100">
                 <span className="text-lg font-black uppercase">Total Amount</span>
                 <span className="text-2xl font-black text-red-600">₹{total}</span>
               </div>
-
               <div className="space-y-4">
                 <button 
                   onClick={() => navigate('/checkout')}
@@ -134,16 +129,6 @@ export const Cart: React.FC = () => {
                   </p>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center gap-4">
-               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                  <Truck size={24} />
-               </div>
-               <div>
-                  <h4 className="font-bold text-sm uppercase">Quick Delivery</h4>
-                  <p className="text-xs text-gray-500 font-medium">Expected delivery in 3-5 days</p>
-               </div>
             </div>
           </div>
         </div>

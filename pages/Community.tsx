@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { useApp } from '../store';
-// Fix: Added missing ShoppingBag import from lucide-react to resolve the reference on line 37
+import { useApp } from '../store.tsx';
 import { Users, Heart, MessageCircle, Share2, Sparkles, Plus, ShoppingBag } from 'lucide-react';
 
 export const Community: React.FC = () => {

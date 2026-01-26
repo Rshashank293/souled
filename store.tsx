@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { Product, CartItem, User, Order, State, AppTheme, CurrencyCode } from './types';
-import { PRODUCTS } from './mockData';
+import { Product, CartItem, User, Order, State, AppTheme, CurrencyCode } from './types.ts';
+import { PRODUCTS } from './mockData.ts';
 
 type Action =
   | { type: 'TOGGLE_THEME' }
@@ -17,12 +17,21 @@ type Action =
   | { type: 'ADD_NOTIFICATION'; payload: { text: string; type: string } }
   | { type: 'ADD_RECENTLY_VIEWED'; payload: string };
 
+const safeParse = (key: string, fallback: string) => {
+  try {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : JSON.parse(fallback);
+  } catch (e) {
+    return JSON.parse(fallback);
+  }
+};
+
 const initialState: State = {
   theme: (localStorage.getItem('theme') as AppTheme) || 'light',
   currency: 'INR',
   products: PRODUCTS,
-  cart: JSON.parse(localStorage.getItem('cart') || '[]'),
-  wishlist: JSON.parse(localStorage.getItem('wishlist') || '[]'),
+  cart: safeParse('cart', '[]'),
+  wishlist: safeParse('wishlist', '[]'),
   user: {
     id: 'u1',
     name: 'Alex Mercer',
@@ -37,7 +46,7 @@ const initialState: State = {
       { id: '1', type: 'Home', street: 'Skyview Towers, Block A', city: 'Mumbai', state: 'MH', pincode: '400001', phone: '9876543210', isDefault: true }
     ]
   },
-  orders: JSON.parse(localStorage.getItem('orders') || '[]'),
+  orders: safeParse('orders', '[]'),
   stories: [
     { id: '1', imageUrl: 'https://picsum.photos/seed/drop1/400/600', title: 'Winter 24', link: '/products' },
     { id: '2', imageUrl: 'https://picsum.photos/seed/collab1/400/600', title: 'Marvel X SS', link: '/products?theme=Marvel' },

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useApp } from '../store';
+import { useApp } from '../store.tsx';
 import { CheckCircle2, Package, Truck, MapPin, ChevronLeft, Phone, Info } from 'lucide-react';
 
 export const Tracking: React.FC = () => {
@@ -27,7 +27,6 @@ export const Tracking: React.FC = () => {
           <p className="text-[10px] font-bold text-gray-400">ID: {order.id}</p>
         </div>
       </div>
-
       <div className="p-6">
         <div className="bg-red-50 p-6 rounded-[2rem] border border-red-100 mb-8 flex items-center justify-between">
            <div>
@@ -38,7 +37,6 @@ export const Tracking: React.FC = () => {
              <Truck size={24} />
            </div>
         </div>
-
         <div className="space-y-12 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-0.5 before:bg-gray-100">
            {steps.map((step, i) => (
              <div key={step.label} className="flex gap-6 relative z-10">
@@ -61,12 +59,7 @@ export const Tracking: React.FC = () => {
              </div>
            ))}
         </div>
-
         <div className="mt-12 space-y-4">
-           <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex items-start gap-4">
-              <Info className="text-gray-400 flex-shrink-0" size={20} />
-              <p className="text-xs font-medium text-gray-500 leading-relaxed">Your order is being delivered via <span className="font-black text-black">Delhivery Express</span>. Tracking number: {order.trackingNumber}</p>
-           </div>
            <button className="w-full bg-black text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">Contact Support</button>
         </div>
       </div>

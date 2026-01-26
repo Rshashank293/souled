@@ -1,9 +1,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useApp } from '../store';
-import { ProductCard } from '../components/ProductCard';
-// Added missing 'Search' import
+import { useApp } from '../store.tsx';
+import { ProductCard } from '../components/ProductCard.tsx';
 import { SlidersHorizontal, ChevronDown, Grid, LayoutGrid, Filter, Search } from 'lucide-react';
 
 export const ProductsPage: React.FC = () => {
@@ -28,7 +27,7 @@ export const ProductsPage: React.FC = () => {
       if (sortBy === 'Price: Low to High') return a.price - b.price;
       if (sortBy === 'Price: High to Low') return b.price - a.price;
       if (sortBy === 'Popularity') return b.reviewsCount - a.reviewsCount;
-      return 0; // Newest by default
+      return 0;
     });
   }, [state.products, categoryParam, themeParam, sortBy, priceRange, selectedThemes]);
 
@@ -37,7 +36,6 @@ export const ProductsPage: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       <div className="container mx-auto px-4 py-12">
-        {/* Header Section */}
         <div className="mb-12">
           <div className="flex items-center gap-2 text-xs font-black text-gray-400 uppercase tracking-widest mb-4">
             <a href="/" className="hover:text-red-600">Home</a>
@@ -52,7 +50,6 @@ export const ProductsPage: React.FC = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12">
-          {/* Sidebar Filters */}
           <aside className={`lg:w-72 flex-shrink-0 space-y-10 lg:block ${showFilters ? 'block' : 'hidden'}`}>
             <div>
               <h3 className="text-sm font-black uppercase tracking-widest mb-6 border-b-2 border-red-600 pb-2 inline-block">Filter By Price</h3>
@@ -101,9 +98,7 @@ export const ProductsPage: React.FC = () => {
             </div>
           </aside>
 
-          {/* Product Grid Area */}
           <main className="flex-grow">
-            {/* Top Toolbar */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-6 border-b border-gray-100">
               <div className="flex items-center gap-6">
                  <button 
@@ -140,7 +135,6 @@ export const ProductsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-10">
               {filteredProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />

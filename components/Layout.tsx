@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Search, ShoppingBag, Heart, User, Moon, Sun, Mic, Globe, Zap, Sparkles, Menu, X, ChevronRight, Star } from 'lucide-react';
-import { useApp } from '../store';
+import { useApp } from '../store.tsx';
 import { Link, useNavigate } from 'react-router-dom';
 
 const MEGA_MENU = {

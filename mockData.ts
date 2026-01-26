@@ -1,5 +1,5 @@
 
-import { Product } from './types';
+import { Product } from './types.ts';
 
 export const PRODUCTS: Product[] = [
   {
@@ -21,7 +21,6 @@ export const PRODUCTS: Product[] = [
     isNew: true,
     isBestSeller: true,
     stockCount: 50,
-    // Added missing tags property
     tags: ['marvel', 'spiderman', 'oversized', 'tee', 'miles morales']
   },
   {
@@ -41,7 +40,6 @@ export const PRODUCTS: Product[] = [
     rating: 4.5,
     reviewsCount: 450,
     stockCount: 20,
-    // Added missing tags property
     tags: ['dc', 'wonder woman', 'dress', 'women']
   },
   {
@@ -62,7 +60,6 @@ export const PRODUCTS: Product[] = [
     reviewsCount: 3200,
     isBestSeller: true,
     stockCount: 15,
-    // Added missing tags property
     tags: ['anime', 'attack on titan', 'hoodie', 'survey corps']
   },
   {
@@ -82,7 +79,6 @@ export const PRODUCTS: Product[] = [
     rating: 4.3,
     reviewsCount: 890,
     stockCount: 40,
-    // Added missing tags property
     tags: ['disney', 'mickey mouse', 'joggers', 'lounge']
   },
   {
@@ -102,7 +98,6 @@ export const PRODUCTS: Product[] = [
     rating: 4.7,
     reviewsCount: 150,
     stockCount: 100,
-    // Added missing tags property
     tags: ['harry potter', 'hogwarts', 'cap', 'accessory']
   },
   {
@@ -122,7 +117,6 @@ export const PRODUCTS: Product[] = [
     rating: 4.6,
     reviewsCount: 940,
     stockCount: 30,
-    // Added missing tags property
     tags: ['marvel', 'iron man', 'tee', 'glow in the dark']
   }
 ];
