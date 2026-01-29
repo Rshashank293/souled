@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Search, ShoppingBag, Heart, User, Moon, Sun, Mic, Globe, Zap, Sparkles, Menu, X, ChevronRight, Star } from 'lucide-react';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 import { Link, useNavigate } from 'react-router-dom';
 
 const MEGA_MENU = {

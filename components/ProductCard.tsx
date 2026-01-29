@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { Heart, ShoppingCart } from 'lucide-react';
-import { Product } from '../types.ts';
-import { useApp } from '../store.tsx';
+// Fix: remove .ts extension for standard module resolution
+import { Product } from '../types';
+import { useApp } from '../store';
 import { Link } from 'react-router-dom';
 
 export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {

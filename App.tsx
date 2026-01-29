@@ -1,21 +1,20 @@
 
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import { AppProvider } from './store.tsx';
-import { Layout } from './components/Layout.tsx';
-import { Home } from './pages/Home.tsx';
-import { ProductDetail } from './pages/ProductDetail.tsx';
-import { Cart } from './pages/Cart.tsx';
-import { ProductsPage } from './pages/Products.tsx';
-import { Checkout } from './pages/Checkout.tsx';
-import { Account } from './pages/Account.tsx';
-import { Tracking } from './pages/Tracking.tsx';
-import { AdminDashboard } from './pages/AdminDashboard.tsx';
-import { Community } from './pages/Community.tsx';
-import { AIChatbot } from './components/AIChatbot.tsx';
-import { Membership } from './pages/Membership.tsx';
-import { Wishlist } from './pages/Wishlist.tsx';
-import { GamifiedOffers } from './components/GamifiedOffers.tsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AppProvider } from './store';
+import { Layout } from './components/Layout';
+import { Home } from './pages/Home';
+import { ProductDetail } from './pages/ProductDetail';
+import { Cart } from './pages/Cart';
+import { ProductsPage } from './pages/Products';
+import { Checkout } from './pages/Checkout';
+import { Account } from './pages/Account';
+import { Tracking } from './pages/Tracking';
+import { Community } from './pages/Community';
+import { AIChatbot } from './components/AIChatbot';
+import { Membership } from './pages/Membership';
+import { Wishlist } from './pages/Wishlist';
+import { GamifiedOffers } from './components/GamifiedOffers';
 
 const App: React.FC = () => {
   return (
@@ -30,7 +29,6 @@ const App: React.FC = () => {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/account" element={<Account />} />
             <Route path="/track/:id" element={<Tracking />} />
-            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/community" element={<Community />} />
             <Route path="/membership" element={<Membership />} />
             <Route path="/wishlist" element={<Wishlist />} />

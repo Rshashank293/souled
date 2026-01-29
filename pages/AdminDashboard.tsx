@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 import { BarChart3, ShieldAlert, Truck, Users, AlertCircle, TrendingUp, Package, DollarSign, Warehouse, Globe, Zap } from 'lucide-react';
 
 export const AdminDashboard: React.FC = () => {

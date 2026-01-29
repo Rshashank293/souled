@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import App from './App';
 
 // Global error handling for catch-all
 window.onerror = function(message, source, lineno, colno, error) {

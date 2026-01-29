@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { Sparkles, X, Gift, RotateCw } from 'lucide-react';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 
 export const GamifiedOffers: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

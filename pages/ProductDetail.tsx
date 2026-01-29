@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 import { ShoppingBag, Heart, Check, Share2, Ruler, ShieldCheck, MapPin } from 'lucide-react';
 
 export const ProductDetail: React.FC = () => {

@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 import { Users, Heart, MessageCircle, Share2, Sparkles, Plus, ShoppingBag } from 'lucide-react';
 
 export const Community: React.FC = () => {

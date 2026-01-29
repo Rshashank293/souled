@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 import { CheckCircle2, Package, Truck, MapPin, ChevronLeft, Phone, Info } from 'lucide-react';
 
 export const Tracking: React.FC = () => {

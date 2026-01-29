@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { useApp } from '../store.tsx';
-import { ProductCard } from '../components/ProductCard.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
+import { ProductCard } from '../components/ProductCard';
 import { Heart, ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 

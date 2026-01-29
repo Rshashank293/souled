@@ -65,7 +65,7 @@ export interface User {
   points: number;
   walletBalance: number;
   referralCode: string;
-  role: 'USER' | 'ADMIN';
+  role: 'USER';
   addresses: Address[];
   lastLoginIp?: string;
   deviceFingerprint?: string;

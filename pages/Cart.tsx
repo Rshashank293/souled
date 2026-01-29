@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 import { Trash2, Plus, Minus, ArrowLeft, ShieldCheck, Truck, ShoppingBag } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 

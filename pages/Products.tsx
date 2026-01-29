@@ -1,8 +1,9 @@
 
 import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useApp } from '../store.tsx';
-import { ProductCard } from '../components/ProductCard.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
+import { ProductCard } from '../components/ProductCard';
 import { SlidersHorizontal, ChevronDown, Grid, LayoutGrid, Filter, Search } from 'lucide-react';
 
 export const ProductsPage: React.FC = () => {

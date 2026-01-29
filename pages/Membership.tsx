@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 import { Zap, ShieldCheck, Truck, Star, Sparkles, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 export const Membership: React.FC = () => {

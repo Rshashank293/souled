@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { Product, CartItem, User, Order, State, AppTheme, CurrencyCode } from './types.ts';
-import { PRODUCTS } from './mockData.ts';
+import { Product, CartItem, User, Order, State, AppTheme, CurrencyCode } from './types';
+import { PRODUCTS } from './mockData';
 
 type Action =
   | { type: 'TOGGLE_THEME' }
@@ -32,20 +32,7 @@ const initialState: State = {
   products: PRODUCTS,
   cart: safeParse('cart', '[]'),
   wishlist: safeParse('wishlist', '[]'),
-  user: {
-    id: 'u1',
-    name: 'Alex Mercer',
-    email: 'alex@enterprise.com',
-    isMember: true,
-    tier: 'PLATINUM',
-    points: 4500,
-    walletBalance: 1200,
-    referralCode: 'ALEX500',
-    role: 'ADMIN',
-    addresses: [
-      { id: '1', type: 'Home', street: 'Skyview Towers, Block A', city: 'Mumbai', state: 'MH', pincode: '400001', phone: '9876543210', isDefault: true }
-    ]
-  },
+  user: safeParse('user', 'null'), // Start as null to act like a real app
   orders: safeParse('orders', '[]'),
   stories: [
     { id: '1', imageUrl: 'https://picsum.photos/seed/drop1/400/600', title: 'Winter 24', link: '/products' },
@@ -84,6 +71,8 @@ function reducer(state: State, action: Action): State {
       return { ...state, orders: [action.payload, ...state.orders], cart: [] };
     case 'CLEAR_CART':
       return { ...state, cart: [] };
+    case 'SET_USER':
+      return { ...state, user: action.payload };
     case 'TOGGLE_WISHLIST':
       return { ...state, wishlist: state.wishlist.includes(action.payload) ? state.wishlist.filter(id => id !== action.payload) : [...state.wishlist, action.payload] };
     case 'ADD_NOTIFICATION':
@@ -99,7 +88,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem('cart', JSON.stringify(state.cart));
     localStorage.setItem('wishlist', JSON.stringify(state.wishlist));
     localStorage.setItem('orders', JSON.stringify(state.orders));
-  }, [state.cart, state.wishlist, state.orders]);
+    localStorage.setItem('user', JSON.stringify(state.user));
+  }, [state.cart, state.wishlist, state.orders, state.user]);
+  // Fix: Corrected the value object syntax by replacing the semicolon with a comma.
   return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 };
 

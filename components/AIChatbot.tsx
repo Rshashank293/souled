@@ -2,7 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { MessageSquare, X, Send, Sparkles, ShoppingBag, Truck } from 'lucide-react';
-import { useApp } from '../store.tsx';
+// Fix: remove .tsx extension for standard module resolution
+import { useApp } from '../store';
 import { useNavigate } from 'react-router-dom';
 
 export const AIChatbot: React.FC = () => {
@@ -29,16 +30,9 @@ export const AIChatbot: React.FC = () => {
     setIsTyping(true);
 
     try {
-      // Safety check for environment
-      const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
+      // Fix: Use process.env.API_KEY directly for initialization as per guidelines
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
-      if (!apiKey) {
-        setMessages(prev => [...prev, { role: 'bot', text: "I'm currently in high-speed offline mode. I can help with sizing, product categories, and general SS info!" }]);
-        setIsTyping(false);
-        return;
-      }
-
-      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: userMsg,
@@ -55,6 +49,7 @@ export const AIChatbot: React.FC = () => {
         }
       });
 
+      // Fix: Access .text property directly
       setMessages(prev => [...prev, { role: 'bot', text: response.text || "Sorry, I'm having a bit of a glitch. How can I help?" }]);
     } catch (error) {
       console.error("AI Error:", error);
